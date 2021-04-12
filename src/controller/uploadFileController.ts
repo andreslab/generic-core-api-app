@@ -1,6 +1,7 @@
 import { Request, response, Response } from  'express';
 import multer from 'multer';
 import fs from 'fs';
+import { EditController } from './editController';
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -45,6 +46,8 @@ class UploadFileController {
 
         const name = req.body.name;
         const path = req.file.path; 
+
+        EditController.processImage();
 
        res.writeHead(200, {"Content-Type": "application/json"});
        var json = JSON.stringify({
